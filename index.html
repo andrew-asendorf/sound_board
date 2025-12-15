@@ -2,59 +2,22 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sound Button</title>
-
-  <style>
-    body {
-      margin: 0;
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-family: system-ui, Arial, sans-serif;
-      background: #f4f4f4;
-    }
-
-    button {
-      font-size: 22px;
-      padding: 18px 28px;
-      border-radius: 14px;
-      border: none;
-      cursor: pointer;
-      background: #007bff;
-      color: white;
-    }
-
-    button:active {
-      transform: scale(0.97);
-    }
-  </style>
 </head>
 <body>
- I don't understand
-	what is it clean?
 
-  stupid
-  <button id="playBtn">Play Sound</button>
+  <button onclick="playSound()">Play Sound</button>
 
-  <audio id="audio" preload="auto">
+  <audio id="sound">
     <source src="Polly.mp3" type="audio/mpeg">
-    Your browser does not support audio.
   </audio>
 
   <script>
-    const button = document.getElementById("playBtn");
-    const audio = document.getElementById("audio");
-
-    button.addEventListener("click", () => {
+    function playSound() {
+      const audio = document.getElementById("sound");
       audio.currentTime = 0;
-
-      audio.play().catch(error => {
-        console.log("Audio blocked:", error);
-        alert("Click again — your browser requires interaction to play sound.");
-      });
-    });
+      audio.play();
+    }
   </script>
 
 </body>
