@@ -1,32 +1,61 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Button Sound</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sound Button</title>
+
   <style>
-    body { font-family: system-ui, Arial; display: grid; place-items: center; height: 100vh; margin: 0; }
-    button { font-size: 20px; padding: 16px 24px; border-radius: 14px; border: 0; cursor: pointer; }
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: system-ui, Arial, sans-serif;
+      background: #f4f4f4;
+    }
+
+    button {
+      font-size: 22px;
+      padding: 18px 28px;
+      border-radius: 14px;
+      border: none;
+      cursor: pointer;
+      background: #007bff;
+      color: white;
+    }
+
+    button:active {
+      transform: scale(0.97);
+    }
   </style>
 </head>
 <body>
+	ggggggggggggggggggggggggggggggggggggggg
+	
+	
+
   <button id="playBtn">Play Sound</button>
 
-  <audio id="audio" src="Polly.mp3" preload="auto"></audio>
+  <audio id="audio" preload="auto">
+    <source src="sound.mp3" type="audio/mpeg">
+    Your browser does not support audio.
+  </audio>
 
   <script>
-    const btn = document.getElementById("playBtn");
+    const button = document.getElementById("playBtn");
     const audio = document.getElementById("audio");
 
-    btn.addEventListener("click", async () => {
-      try {
-        audio.currentTime = 0; // restart from beginning each click
-        await audio.play();
-      } catch (err) {
-        console.log("Playback blocked or failed:", err);
-        alert("Your browser blocked autoplay. Tap the button again or check sound settings.");
-      }
+    button.addEventListener("click", () => {
+      audio.currentTime = 0;
+
+      audio.play().catch(error => {
+        console.log("Audio blocked:", error);
+        alert("Click again — your browser requires interaction to play sound.");
+      });
     });
   </script>
+
 </body>
 </html>
