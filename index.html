@@ -1,10 +1,32 @@
 <!doctype html>
-<html>
+<html lang="en">
 <head>
-<meta charset="utf-8">
-<title>Untitled Document</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Button Sound</title>
+  <style>
+    body { font-family: system-ui, Arial; display: grid; place-items: center; height: 100vh; margin: 0; }
+    button { font-size: 20px; padding: 16px 24px; border-radius: 14px; border: 0; cursor: pointer; }
+  </style>
 </head>
-
 <body>
+  <button id="playBtn">Play Sound</button>
+
+  <audio id="audio" src="sound.mp3" preload="auto"></audio>
+
+  <script>
+    const btn = document.getElementById("playBtn");
+    const audio = document.getElementById("audio");
+
+    btn.addEventListener("click", async () => {
+      try {
+        audio.currentTime = 0; // restart from beginning each click
+        await audio.play();
+      } catch (err) {
+        console.log("Playback blocked or failed:", err);
+        alert("Your browser blocked autoplay. Tap the button again or check sound settings.");
+      }
+    });
+  </script>
 </body>
 </html>
